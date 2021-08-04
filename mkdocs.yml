@@ -1,0 +1,32 @@
+# Project information
+site_name: goose docs
+site_url: https://pressly.github.io/goose/
+site_description: >-
+  The missing goose docs.
+
+# Repository
+repo_name: pressly/goose
+repo_url: https://github.com/pressly/goose
+edit_uri: ""
+
+theme:
+  name: material
+  logo: assets/goose.svg
+  palette:
+    primary: white
+  favicon: assets/favicon.ico
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+
+nav:
+  - Home: index.md
+  - CLI Commands:
+      - Commands: commands/commands.md
+      - Experimental: commands/experimental.md
+  - Tutorials: tutorials.md
+  - FAQ: FAQ.md
