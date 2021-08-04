@@ -1,5 +1,5 @@
 # Project information
-site_name: goose docs
+site_name: pressly/goose
 site_url: https://pressly.github.io/goose/
 site_description: >-
   The missing goose docs.
@@ -11,7 +11,7 @@ edit_uri: ""
 
 theme:
   name: material
-  logo: assets/goose.svg
+  logo: assets/pressly.png
   palette:
     primary: white
   favicon: assets/favicon.ico
@@ -20,13 +20,25 @@ theme:
     - navigation.tracking
     - navigation.sections
     - navigation.tabs
-    - navigation.indexes
+    # - navigation.indexes
     - navigation.top
 
+plugins:
+  - social
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.details
+  - admonition
+  - meta
+
 nav:
-  - Home: index.md
+  - Home:
+      - Introduction: index.md
+      - Getting started: getting-started.md
   - CLI Commands:
-      - Commands: commands/commands.md
+      - Supported: commands/supported.md
       - Experimental: commands/experimental.md
-  - Tutorials: tutorials.md
   - FAQ: FAQ.md
+  - Blog:
+      - Welcome: blog/welcome.md
