@@ -11,7 +11,7 @@ edit_uri: ""
 
 theme:
   name: material
-  logo: assets/pressly.png
+  logo: assets/goose_logo.png
   palette:
     primary: white
   favicon: assets/favicon.ico
@@ -33,6 +33,9 @@ markdown_extensions:
   - pymdownx.details
   - admonition
   - meta
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home:

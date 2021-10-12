@@ -104,7 +104,7 @@ func main() {
 
 ---
 
-A sample repo can be found at [mfridmna/goose-demo](https://github.com/mfridman/goose-demo)
+A sample repo can be found at [mfridmn/goose-demo](https://github.com/mfridman/goose-demo)
 
 From the root of the directory you can build the binary, and to prove it has no dependencies move it to your home directory and run the binary. This will create a embed_example.sql file for sqlite database. Cool right?!
 
