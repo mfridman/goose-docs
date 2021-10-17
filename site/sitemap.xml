@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://pressly.github.io/goose/blog/better-tests/</loc>
+         <lastmod>2021-10-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://pressly.github.io/goose/blog/embed-sql-migrations/</loc>
          <lastmod>2021-10-17</lastmod>
          <changefreq>daily</changefreq>
