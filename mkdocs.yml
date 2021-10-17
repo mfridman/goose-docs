@@ -48,3 +48,4 @@ nav:
   - Blog:
       - Welcome: blog/welcome.md
       - Embedding migrations: blog/embed-sql-migrations.md
+      - Better tests with containers: blog/better-tests.md

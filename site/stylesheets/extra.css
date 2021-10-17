@@ -1,7 +1,7 @@
-/* body > div.md-container > main > div > div.md-content > article {
+body > div.md-container > main > div > div.md-content > article {
   font-family: Verdana, sans-serif;
   font-size: 0.8rem;
-} */
+}
 
 .md-header__button.md-logo {
   margin-top: 0;
@@ -12,9 +12,11 @@
 
 .md-header__button.md-logo img,
 .md-header__button.md-logo svg {
-  height: 2rem;
-  width: 2rem;
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
-/* body > div.md-container > nav > div > ul > li > a {
-} */
+body > div.md-container > nav > div > ul > li > a {
+  color: red;
+  font-size: 2rem;
+}
