@@ -17,27 +17,34 @@ However, many users were not satisfied with this behaviour, summarized as:
 
 This comment from [`@zmoazeni`](https://github.com/zmoazeni) has stuck with me over the years.
 
+Given that `goose` maintains a full history of applied migrations in its `goose_db_version` table, we are able to resolve the database state against the migration files. And now, if missing (out-of-order) migrations are detected users can opt-in to apply them.
+
 ---
 
-Internally within Pressly (acquired by [Alida](https://www.alida.com/)) we suggested adopting the [hybrid versioning approach](https://github.com/pressly/goose#hybrid-versioning). Briefly, in development developers create ***timestamped*** migrations, and subsequently when that PR is merged into the `main` branch its converted into a ***sequential*** migration. 
+Internally within Pressly (acquired by [Alida](https://www.alida.com/)) we suggested adopting the [hybrid versioning approach](https://github.com/pressly/goose#hybrid-versioning). Briefly, in development developers create ***timestamped*** migrations, and subsequently when that PR is merged into the `main` branch its converted into a ***sequential*** migration. This is done with the `goose fix` command.
 
-Then when a release is cut and rolled out to production only sequential migrations are applied. It was a process solution to the problem that worked for our team. Yes, yes.. this does require developers to be rebasing and resolving conflicts (if any) between migrations.
+Then when a release is cut and rolled out to production only sequential migrations are applied. It was a solution to the problem that worked for our team. Yes, yes.. this does require developers to be rebasing/merging and resolving conflicts (if any) between migrations.
 
 <figure markdown="1">
 ![hybrid versioning approach](../assets/hybrid-versioning-approach.png){ width=550px; }
 </figure>
 
-Buttttt..... as we listened to community feedback, and saw the rise in the number of `goose` forks (mainly to support missing migrations) we decided to do something about it.
+- A timestamped version uses a time-based format (second resolution): `20060102150405`
+- A sequential version is typically a low number
 
-From this [comment](https://github.com/pressly/goose/issues/262#issue-960391249):
+There should *never* (at least in our lifetime) be a collision between timestamped and sequential versions.
 
-> We should meet users in the middle (lots of great feedback from the community) and give them the flexibility to use `goose` as they see fit. The responsibility will be shifted from the tool itself, to the end user.
+Buttttt..... as we listened to community feedback, and saw the rise in the number of `goose` forks (mainly to support missing migrations), we decided the community was right. The hybrid versioning approach is not for everyone and it wasn't fair for us to impose this strict restriction.
 
-Here we are, this is how it works today.
+I think this [comment](https://github.com/pressly/goose/issues/262#issue-960391249) summarized it well:
 
-By default, if you attempt to apply missing (out-of-order) migrations `goose` will raise an error. However, if you want to apply these missing migrations pass `goose` the `-allow-missing` flag, or if using as a library supply the functional option `goose.WithAllowMissing()` to Up, UpTo or UpByOne.
+> *We should meet users in the middle (lots of great feedback from the community) and give them the flexibility to use `goose` as they see fit. The responsibility will be shifted from the tool itself, to the end user.*
 
-More details can be found in the [Changelog here](https://github.com/pressly/goose/releases/tag/v3.3.0) and the [tracking issue #262](https://github.com/pressly/goose/issues/262).
+To recap, this is the new behaviour of `goose`:
+
+If you attempt to apply missing (out-of-order) migrations `goose` will raise an error (previously `goose` would ignore these migrations). However, if you do want to apply these missing migrations pass `goose` the `-allow-missing` flag, or if using as a library supply the functional option `goose.WithAllowMissing()` to Up, UpTo or UpByOne commands.
+
+More details can be found in the [Changelog](https://github.com/pressly/goose/releases/tag/v3.3.0) and the [issue #262](https://github.com/pressly/goose/issues/262).
 
 Hope folks find this useful. More awesome things are planned for `goose` 🚀.
 
