@@ -4,4 +4,4 @@ preview:
 
 .PHONY: build
 build:
-	mkdocs build && rsync -chavzp site/ ~/go/src/github.com/pressly/goose
+	mkdocs build --config-file mkdocs.yml && rsync -chavzp site/ ~/src/github.com/pressly/goose

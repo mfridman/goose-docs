@@ -2,6 +2,8 @@
 title: Adding support for out-of-order migrations
 ---
 
+# Adding support for out-of-order migrations
+
 Starting with `goose` [v3.3.0](https://github.com/pressly/goose/releases/tag/v3.3.0) we added the ability to apply missing (out-of-order) migrations. Thanks for all the the community feedback over the years.
 
 Let's back it up, what are "missing" or "out-of-order" migrations?

@@ -3,6 +3,8 @@ title: Hello, docs!
 description: Introductory blog post.
 ---
 
+# Hello, docs!
+
 Introductory blog post. I guess I'll write a few words.
 
 `goose` was originally open sourced in late 2012 by Liam Staskawicz on [bitbucket.org/liamstask/goose](https://bitbucket.org/liamstask/goose) with an MIT license.

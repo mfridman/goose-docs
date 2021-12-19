@@ -19,3 +19,17 @@ make preview
 ```
 
 Available at: http://localhost:8000
+
+
+### How to update mkdocs-insiders
+
+https://squidfunk.github.io/mkdocs-material/insiders/getting-started/#with-git
+
+    pip install -e mkdocs-material-insiders
+
+
+### Install plugins
+
+From https://github.com/datarobot/mkdocs-redirects
+
+    pip install mkdocs-redirects

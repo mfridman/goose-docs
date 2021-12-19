@@ -3,7 +3,7 @@ title: Embedding migrations
 description: Embed your SQL files directly into goose binary. No more copying files around!
 ---
 
-## Introduction
+## Embedding migrations
 
 Go continues to be boring while sprinkling quality of life features. One of the recent additions was the ability to embed files at compile time. Click here for [go1.16 release notes](https://golang.org/doc/go1.16#library-embed).
 

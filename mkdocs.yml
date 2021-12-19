@@ -26,7 +26,16 @@ theme:
     - content.code.annotate
 
 plugins:
+  - search
   - social
+  - tags
+  - redirects:
+      redirect_maps:
+        blog/welcome.md: blog/2021/welcome.md
+        blog/embed-sql-migrations.md: blog/2021/embed-sql-migrations.md
+        blog/better-tests.md: blog/2021/better-tests.md
+        blog/out-of-order-migrations.md: blog/2021/out-of-order-migrations.md
+        blog/no-version-migrations.md: blog/2021/no-version-migrations.md
 
 markdown_extensions:
   - pymdownx.superfences
@@ -48,7 +57,9 @@ nav:
       - Experimental: commands/experimental.md
   - FAQ: FAQ.md
   - Blog:
-      - Welcome: blog/welcome.md
-      - Embedding migrations: blog/embed-sql-migrations.md
-      - Better tests with containers: blog/better-tests.md
-      - Adding support for out-of-order migrations: blog/out-of-order-migrations.md
+      - 2021:
+          - blog/2021/welcome.md
+          - blog/2021/embed-sql-migrations.md
+          - blog/2021/better-tests.md
+          - blog/2021/out-of-order-migrations.md
+          - blog/2021/no-version-migrations.md

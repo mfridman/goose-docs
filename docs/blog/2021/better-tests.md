@@ -3,6 +3,8 @@ title: Better tests with containers
 description: A container a test makes the bugs 🐛 go away.
 ---
 
+# Better tests with containers
+
 Managing state is hard. Managing database state is even harder. And coordinating state within a test suite is just always a bad time.
 
 But it doesn't have to be this way!
