@@ -8,9 +8,9 @@ preview:
 
 .PHONY: build
 build:
-	mkdocs build --config-file mkdocs.yml \
-	&& rsync -chavzp site/ ~/src/github.com/pressly/goose \
-	rm -rf .cache site
+	rm -rf site ./.cache \
+	&& mkdocs build --config-file mkdocs.yml \
+	&& rsync -chavzp site/ ~/src/github.com/pressly/goose
 
 .PHONY: deploy
 deploy:
