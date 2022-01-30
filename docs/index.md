@@ -1,8 +1,12 @@
-# Introduction
+# Overview
 
-**goose** is a database migration tool. Manage your database schema by creating incremental SQL changes or Go functions.
+![Image title](assets/goose_logo.png){ width="150" align=right }
 
-## Goals of this fork
+**goose** is a database migration tool. Manage your database schema by creating incremental SQL changes or Go functions. 
+
+[:octicons-download-16: Install goose](installation.md){ .md-button .md-button--custom }
+
+## Background
 
 [github.com/pressly/goose](https://github.com/pressly/goose) is a fork of [bitbucket.org/liamstask/goose](https://bitbucket.org/liamstask/goose) with the following changes:
 

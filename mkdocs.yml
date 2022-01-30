@@ -14,11 +14,13 @@ theme:
   logo: assets/goose_logo.png
   palette:
     primary: white
-  favicon: assets/favicon.ico
+    accent: light blue
+  favicon: assets/goose_logo_cropped.png
   features:
     - navigation.instant
     - navigation.tracking
     - navigation.sections
+    - navigation.expand
     - navigation.tabs
     # - navigation.indexes
     - navigation.top
@@ -31,6 +33,7 @@ plugins:
   - tags
   - redirects:
       redirect_maps:
+        getting-started.md: installation.md
         blog/welcome.md: blog/2021/welcome.md
         blog/embed-sql-migrations.md: blog/2021/embed-sql-migrations.md
         blog/better-tests.md: blog/2021/better-tests.md
@@ -38,24 +41,27 @@ plugins:
         blog/no-version-migrations.md: blog/2021/no-version-migrations.md
 
 markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.superfences
   - pymdownx.details
   - admonition
   - meta
   - md_in_html
   - attr_list
+  - def_list
 
 extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Home:
-      - Introduction: index.md
-      - Getting started: getting-started.md
+  - Getting Started:
+    - Overview: index.md
+    - Installation: installation.md
   - CLI Commands:
       - Supported: commands/supported.md
       - Experimental: commands/experimental.md
-  - FAQ: FAQ.md
   - Blog:
       - 2021:
           - blog/2021/welcome.md
@@ -63,3 +69,4 @@ nav:
           - blog/2021/better-tests.md
           - blog/2021/out-of-order-migrations.md
           - blog/2021/no-version-migrations.md
+          - blog/2021/visualizing-up-down-commands.md

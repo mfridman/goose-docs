@@ -28,7 +28,7 @@ Internally within Pressly (acquired by [Alida](https://www.alida.com/)) we sugge
 Then when a release is cut and rolled out to production only sequential migrations are applied. It was a solution to the problem that worked for our team. Yes, yes.. this does require developers to be rebasing/merging and resolving conflicts (if any) between migrations.
 
 <figure markdown="1">
-![hybrid versioning approach](../assets/hybrid-versioning-approach.png){ width=550px; }
+![hybrid versioning approach](../../assets/hybrid-versioning-approach.png){ width=550px; }
 </figure>
 
 - A timestamped version uses a time-based format (second resolution): `20060102150405`
