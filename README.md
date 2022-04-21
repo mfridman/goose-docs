@@ -25,6 +25,7 @@ Available at: http://localhost:8000
 
 https://squidfunk.github.io/mkdocs-material/insiders/getting-started/#with-git
 
+    cd $HOME/src/github.com/mfridman
     pip install -e mkdocs-material-insiders
 
 
