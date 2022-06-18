@@ -22,21 +22,15 @@ jobs:
           MATERIAL_VERSION=$(pip list --no-index --format=json | jq -r '.[] | select(.name=="mkdocs-material").version')
           SHA_SHORT=$(git rev-parse --short HEAD)
           MESSAGE="Deployed ${SHA_SHORT} with MkDocs version ${MKDOCS_VERSION} (${MATERIAL_VERSION})"
-          echo ${{ env.MESSAGE }}
-          echo ${MESSAGE}
-          echo $MESSAGE
           echo "MESSAGE=${MESSAGE}" >> $GITHUB_ENV
-      - run: echo ${{ env.MESSAGE }}
-      - run: echo ${MESSAGE}
-      - run: echo $MESSAGE
-      # - name: deploy docs upstream
-      #   uses: cpina/github-action-push-to-another-repository@main
-      #   env:
-      #     API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
-      #   with:
-      #     source-directory: site/
-      #     destination-github-username: "pressly"
-      #     destination-repository-name: "goose"
-      #     user-email: mf192@icloud.com
-      #     commit-message: ${{ env.MESSAGE }}
-      #     target-branch: gh-pages
+      - name: deploy docs upstream
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
+        with:
+          source-directory: site/
+          destination-github-username: "pressly"
+          destination-repository-name: "goose"
+          user-email: mf192@icloud.com
+          commit-message: ${{ env.MESSAGE }}
+          target-branch: gh-pages
