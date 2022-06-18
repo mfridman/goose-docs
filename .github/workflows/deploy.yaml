@@ -18,5 +18,4 @@ jobs:
       - run: |
           git config --global user.name 'Michael Fridman'
           git config --global user.email 'mf192@icloud.com'
-          git remote set-url goose_origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/pressly/goose.git
-          mkdocs gh-deploy --clean -v --remote-name goose_origin
+          mkdocs gh-deploy --clean -v --remote-name https://mfridman:{{ secrets.PAT_TOKEN }}@github.com/pressly/goose.git
