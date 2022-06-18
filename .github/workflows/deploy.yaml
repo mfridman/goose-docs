@@ -16,7 +16,8 @@ jobs:
       - run: pip install mkdocs-redirects
       - run: pip install git+https://${{ secrets.PAT_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
       - run: mkdocs build --clean --config-file mkdocs.yml -d site -v
-      - run: |
+      - name: prepare message
+        run: |
           MKDOCS_VERSION=$(pip list --no-index --format=json | jq -r '.[] | select(.name=="mkdocs").version')
           MATERIAL_VERSION=$(pip list --no-index --format=json | jq -r '.[] | select(.name=="mkdocs-material").version')
           SHA_SHORT=$(git rev-parse --short HEAD)
