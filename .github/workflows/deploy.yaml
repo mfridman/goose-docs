@@ -14,7 +14,9 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-redirects
-      - run: pip install git+https://${PAT_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
-      - run: mkdocs gh-deploy --clean --force --remote-name git@github.com:pressly/goose.git 
-env:
-  PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+      - run: pip install git+https://${{ secrets.PAT_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
+      - run: |
+        git config --global user.name 'Michael Fridman'
+        git config --global user.email 'mf192@icloud.com'
+        git remote set-url goose_origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/pressly/goose.git
+        mkdocs gh-deploy --clean -v --remote-name goose_origin
