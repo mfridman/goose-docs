@@ -20,9 +20,8 @@ jobs:
           MKDOCS_VERSION=$(pip list --no-index --format=json | jq -r '.[] | select(.name=="mkdocs").version')
           MATERIAL_VERSION=$(pip list --no-index --format=json | jq -r '.[] | select(.name=="mkdocs-material").version')
           SHA_SHORT=$(git rev-parse --short HEAD)
-          echo "{MKDOCS_VERSION}={MKDOCS_VERSION}" >> $GITHUB_ENV
-          echo "{MATERIAL_VERSION}={MATERIAL_VERSION}" >> $GITHUB_ENV
-          echo "{SHA_SHORT}={SHA_SHORT}" >> $GITHUB_ENV
+          MESSAGE="Deployed ${SHA_SHORT} with MkDocs version - ${MKDOCS_VERSION} (${MATERIAL_VERSION})"
+          echo "{MESSAGE}={MESSAGE}" >> $GITHUB_ENV
       - name: deploy docs upstream
         uses: cpina/github-action-push-to-another-repository@main
         env:
@@ -32,5 +31,5 @@ jobs:
           destination-github-username: "pressly"
           destination-repository-name: "goose"
           user-email: mf192@icloud.com
-          commit-message: "Deployed ${SHA_SHORT} with MkDocs version: ${MKDOCS_VERSION} (${MATERIAL_VERSION})"
+          commit-message: ${MESSAGE}
           target-branch: gh-pages
