@@ -31,5 +31,5 @@ jobs:
           destination-github-username: "pressly"
           destination-repository-name: "goose"
           user-email: mf192@icloud.com
-          commit-message: $MESSAGE
+          commit-message: ${{ env.MESSAGE }}
           target-branch: gh-pages
