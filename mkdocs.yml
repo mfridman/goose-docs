@@ -57,8 +57,8 @@ extra_css:
 
 nav:
   - Getting Started:
-    - Overview: index.md
-    - Installation: installation.md
+      - Overview: index.md
+      - Installation: installation.md
   - CLI Commands:
       - Supported: commands/supported.md
       - Experimental: commands/experimental.md
@@ -70,3 +70,5 @@ nav:
           - blog/2021/out-of-order-migrations.md
           - blog/2021/no-version-migrations.md
           - blog/2021/visualizing-up-down-commands.md
+      - 2022:
+          - blog/2022/improving-clickhouse.md
