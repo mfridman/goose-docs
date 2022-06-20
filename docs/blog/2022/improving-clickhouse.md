@@ -17,7 +17,7 @@ To summarize:
 
 ---
 
-### Getting started
+## Getting started
 
 Here's a quick tour of using goose against a running ClickHouse docker container.
 
@@ -59,11 +59,11 @@ Expected output following a successful migration.
 
 ---
 
-### Confirm migrations clickhouse-client
+## Check migrations
 
 We can now use the [`clickhouse-client`](https://clickhouse.com/docs/en/interfaces/cli) to poke around the server:
 
-#### Show tables
+### **Show tables**
 
 ```bash
 clickhouse-client --vertical \
@@ -87,7 +87,7 @@ Row 3:
 name: trips
 ```
 
-#### Show all data from `clickstream` table
+### **Show all data from `clickstream` table**
 
 We used the sample data from the [Getting Started with ClickHouse tutorial](https://clickhouse.com/learn/lessons/gettingstarted/).
 
