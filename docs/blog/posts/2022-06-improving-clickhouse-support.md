@@ -1,7 +1,13 @@
 ---
 title: Improving ClickHouse support
 description: goose improves ClickHouse support. Bug fixes, improvements, full end-end tests and upgrade to ClickHouse/clickhouse-go v2 driver.
+date: 2022-06-19
+authors: [mike]
+categories: [Blog, ClickHouse]
+slug: improving-clickhouse-support
 ---
+
+# Improving ClickHouse support
 
 [ClickHouse](https://clickhouse.com/) is a an open-source column-oriented database that is well-suited for analytical workloads. Over the past few years we've seen more and more demand for improved ClickHouse support in goose.
 
@@ -14,6 +20,8 @@ To summarize:
 !!! danger ""
 
     The `/v2` driver [changed the DSN format](https://github.com/ClickHouse/clickhouse-go/issues/525), so be prepared for a breaking change. This is actually a good thing, because it brings the format in-line with other databases.
+
+<!-- more -->
 
 ---
 

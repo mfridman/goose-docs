@@ -22,12 +22,20 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.tabs
-    # - navigation.indexes
+    - navigation.indexes
     - navigation.top
     # - toc.integrate
     - content.code.annotate
 
 plugins:
+  - blog:
+      enabled: true
+      blog_dir: blog
+      post_date_format: medium
+      post_url_format: "{date}/{slug}"
+      post_url_date_format: YYYY
+      post_readtime: false
+
   - search
   - social
   - tags
@@ -63,12 +71,4 @@ nav:
       - Supported: commands/supported.md
       - Experimental: commands/experimental.md
   - Blog:
-      - 2021:
-          - blog/2021/welcome.md
-          - blog/2021/embed-sql-migrations.md
-          - blog/2021/better-tests.md
-          - blog/2021/out-of-order-migrations.md
-          - blog/2021/no-version-migrations.md
-          - blog/2021/visualizing-up-down-commands.md
-      - 2022:
-          - blog/2022/improving-clickhouse.md
+      - blog/index.md

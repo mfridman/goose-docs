@@ -1,6 +1,10 @@
 ---
 title: Visualizing goose up and down commands
 description: Visualizing goose up and down commands.
+date: 2021-12-19
+authors: [mike]
+categories: [Blog, General]
+slug: visualizing-up-down-commands
 ---
 
 # A tour of goose up and down commands
@@ -8,6 +12,8 @@ description: Visualizing goose up and down commands.
 A while ago a co-op student, who happened to be a visual leaner, asked if it were possible to explain `goose` commands visually. At the time we were still at an office, so we gathered around the whiteboard and doodled some diagrams.
 
 This post captures some of those whiteboard sketches, which seemed to help.
+
+<!-- more -->
 
 ## **up commands**
 

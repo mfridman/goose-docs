@@ -1,6 +1,10 @@
 ---
 title: Better tests with containers
 description: A container a test makes the bugs 🐛 go away.
+date: 2021-09-17
+authors: [mike]
+categories: [Blog, Testing]
+slug: better-tests
 ---
 
 # Better tests with containers
@@ -10,6 +14,8 @@ Managing state is hard. Managing database state is even harder. And coordinating
 But it doesn't have to be this way!
 
 There is a fantastic Go package called [ory/dockertest](https://github.com/ory/dockertest) that allows you to spin up ephemeral docker containers. It'll work both locally (assuming you have Docker installed) and in your Continuous Integration (CI) pipelines.
+
+<!-- more -->
 
 After applying thousands of migrations in production we know `goose` is production-ready and does the right thing. But we have plans to add more functionality to `goose`, and integration tests are a welcome addition to the `goose` test-suie.
 

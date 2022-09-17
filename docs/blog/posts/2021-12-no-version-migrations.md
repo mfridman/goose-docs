@@ -1,11 +1,17 @@
 ---
 title: Ad-hoc migrations with no versioning
 description: Database seeding. Apply migrations with no versioning.
+date: 2021-12-19
+authors: [mike]
+categories: [Blog, General]
+slug: no-version-migrations
 ---
 
 # Ad-hoc migrations with no versioning
 
 This post describes a new feature recently added to `goose` -- the ability to apply migrations with **no versioning**. A common use case is to seed a database with data *after* versioned migrations have been applied.
+
+<!-- more -->
 
 If you think of versioned migrations as the blueprint for a house (the schema), then unversioned migrations are like the furnishings inside (the data).
 
