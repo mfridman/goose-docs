@@ -4,7 +4,7 @@ description: goose improves ClickHouse support. Bug fixes, improvements, full en
 date: 2022-06-19
 authors: [mike]
 categories: [Blog, ClickHouse]
-slug: improving-clickhouse-support
+slug: improving-clickhouse
 ---
 
 # Improving ClickHouse support
