@@ -26,3 +26,7 @@ upgrade-all:
 		git pull origin master; \
 		cd ..; \
 		pip install -e mkdocs-material-insiders;
+
+install-deps:
+	pip install mkdocs-redirects
+	pip install pillow cairosvg
