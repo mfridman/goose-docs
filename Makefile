@@ -18,3 +18,11 @@ deploy:
 	&& git checkout gh-pages \
 	&& git add  . \
 	&& (git commit -a -m "Update goose docs ${DATE}" -m "Deployed with MkDocs version: ${MKDOCS_VERSION} Material version: ${MATERIAL_VERSION}"  || echo "Nothing to commit")
+
+upgrade-all:
+	pip3 install --upgrade pip
+	pip3 install -U mkdocs
+	cd ~/src/github.com/squidfunk/mkdocs-material-insiders; \
+		git pull origin master; \
+		cd ..; \
+		pip install -e mkdocs-material-insiders;
