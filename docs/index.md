@@ -2,9 +2,9 @@
 
 ![Image title](assets/goose_logo.png){ width="150" align=right }
 
-**goose** is a database migration tool. Manage your database schema by creating incremental SQL changes or Go functions. 
+**goose** is a database migration tool. Manage your database schema by creating incremental SQL changes or Go functions.
 
-[:octicons-download-16: Install goose](installation.md){ .md-button .md-button--custom }
+[:octicons-download-16: Install goose](installation.md){ .md-button }
 
 ## Background
 
@@ -13,9 +13,9 @@
 - No config files
 - Default `goose` binary can migrate SQL files only
 - Go migrations:
-    - We don't go build Go migrations functions on-the-fly from within the `goose` binary
-    - Instead, we let you create your own custom `goose` binary, register your Go migration functions explicitly and run complex migrations with your own *sql.DB connection
-    - Go migration functions let you run your code within an SQL transaction, if you use the *sql.Tx argument
+  - We don't go build Go migrations functions on-the-fly from within the `goose` binary
+  - Instead, we let you create your own custom `goose` binary, register your Go migration functions explicitly and run complex migrations with your own \*sql.DB connection
+  - Go migration functions let you run your code within an SQL transaction, if you use the \*sql.Tx argument
 - The `goose` pkg is decoupled from the binary:
   - `goose` pkg doesn't register any SQL drivers anymore, thus no driver panic() conflict within your codebase!
   - `goose` pkg doesn't have any vendor dependencies anymore
