@@ -2,9 +2,9 @@
 
 ![Image title](assets/goose_logo.png){ width="150" align=right }
 
-**goose** is a database migration tool. Manage your database schema by creating incremental SQL changes or Go functions.
+**goose** is a database migration tool. Manage your database schema by creating incremental SQL changes and/or Go functions.
 
-[:octicons-download-16: Install goose](installation.md){ .md-button }
+[:octicons-link-16: Installing goose](installation.md){ .md-button }
 
 ## Background
 
