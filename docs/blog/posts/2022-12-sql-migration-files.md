@@ -232,21 +232,20 @@ INSERT INTO "users" ("id", "username", "name", "surname") VALUES (100000, 'goofy
 DROP TABLE users;
 ```
 
-These annotations instruct `goose` to send the entire statement, which now contains multiples insert
-statements, in one shot. Yes, that's one large payload, but that's fine and this migration will
-execute in ~3s, which is an order of magnitude faster as compared to the previous example that took
-~38s.
+These annotations instruct `goose` to send the entire statement, which now contains multiples
+statements delimited by semicolons, in one shot. Yes, that's a large payload, but that's fine and
+the migration will execute in ~3s, which is an order of magnitude faster as compared to the previous
+example that ran in ~38s.
 
 ## Migrations outside transaction
 
 All statements within a migration file are run within a transaction. Some statements, like
 `CREATE DATABASE` or `CREATE INDEX CONCURRENTLY`, cannot be run within a transaction block.
 
-For such cases add the `-- +goose NO TRANSACTION` annotation, usually placed towards the top of the
-file.
+For such cases add the `-- +goose NO TRANSACTION` annotation, usually placed at the top of the file.
 
-This annotation instructs `goose` to run all statements within this file without transactions. This
-includes Up and Down statements.
+This annotation instructs `goose` to run all statements within the file without transactions. This
+applies to both Up and Down statements.
 
 ```sql hl_lines="1"
 -- +goose NO TRANSACTION
