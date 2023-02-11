@@ -15,7 +15,7 @@ slug: overview-sql-file
 In this post we'll examine SQL migration files and `+goose` annotation comments, which are used to
 parse SQL statements and optionally modify how migrations are executed.
 
-As of this writing there are five `+goose` annotations:
+As of this writing there are five annotations:
 
 ```sql
 -- +goose Up
@@ -29,13 +29,13 @@ As of this writing there are five `+goose` annotations:
 
 !!! success "bonus"
 
-    In addition to SQL migration files, you can also use the `goose` package to write Go-based migrations and track both SQL and Go migrations in the same way.
+    In addition to SQL migration files, the `goose` package can be used to write Go-based migrations and track both SQL and Go migrations in the same way.
 
     See the [repository example](https://github.com/pressly/goose/tree/master/examples/go-migrations) for Go migrations, but we'll do a deep dive in a future post. Stay tuned!
 
 ## Quick start
 
-Here's a copy/pasteable `.sql` migration file to get you started:
+Here's a copy/pasteable `.sql` migration file to get started:
 
 ```sql
 -- +goose Up
@@ -97,7 +97,7 @@ SELECT 'down SQL query 2';
 ```
 
 1.  The `-- +goose Down` annotation is optional, and may be omitted entirely if there are no down
-    migrations. Within the .sql file it **must** come after the `-- +goose Up` annotation.
+    migrations. Within the `.sql` file it **must** come after the `-- +goose Up` annotation.
 
     This is invalid:
 
@@ -150,8 +150,8 @@ language plpgsql;
 ```
 
 When `goose` detects a `-- +goose StatementBegin` annotation it continues parsing the statement
-(ignoring semicolons) until the `-- +goose StatementEnd` annotation is detected. The resulting
-statement is stripped of leading and trailing comments / empty lines.
+(ignoring semicolons) until `-- +goose StatementEnd` is detected. The resulting statement is
+stripped of leading and trailing comments / empty lines.
 
 Comments and empty lines ^^within^^ a statement are preserved!
 
@@ -161,8 +161,8 @@ But that's not all, the `-- +goose StatementBegin` and `-- +goose StatementEnd` 
 used to combine multiple statements so they get sent as a single request instead of being sent
 one-by-one.
 
-This is best illustrated with an example. Suppose we have a migration file that creates a `users`
-table and inserts 100,000 rows.
+This is best illustrated with a contrived example. Suppose we have a migration that creates a
+`users` table and inserts 100,000 rows with distinct inserts.
 
 ```sql
 -- +goose Up
@@ -173,6 +173,7 @@ CREATE TABLE users (
     surname text
 );
 
+-- (1)! Inserts:
 INSERT INTO "users" ("id", "username", "name", "surname") VALUES (1, 'gallant_almeida7', 'Gallant', 'Almeida7');
 INSERT INTO "users" ("id", "username", "name", "surname") VALUES (2, 'brave_spence8', 'Brave', 'Spence8');
 .
@@ -184,9 +185,19 @@ INSERT INTO "users" ("id", "username", "name", "surname") VALUES (100000, 'goofy
 DROP TABLE users;
 ```
 
+1.  This is a contrived example. Normally this would be a set of batched `INSERT`s with multiple
+    column values, each enclosed with parentheses and separated by commas, like so:
+
+    ```sql
+    INSERT INTO "users" ("id", "username", "name", "surname")
+    VALUES
+      (1, 'gallant_almeida7', 'Gallant', 'Almeida7'),
+      (2, 'brave_spence8', 'Brave', 'Spence8');
+    ```
+
 The Up migration contains 100,001 unique statements and they are sent to the server one-by-one
 within the same transaction. This migration will take ~38 seconds to complete due to the number of
-round trips
+round trips.
 
 Using postgres as an example, here's what the logs show:
 
@@ -197,8 +208,8 @@ Using postgres as an example, here's what the logs show:
 [...] 100,000 log statements
 ```
 
-However, if we want `goose` to send all inserts as one statement to the server, we can wrap the
-inserts with `-- +goose StatementBegin` and `-- +goose StatementEnd` annotations.
+However, if we want `goose` to send all inserts as one statement, we can wrap the inserts with
+`-- +goose StatementBegin` and `-- +goose StatementEnd` annotations.
 
 ```sql hl_lines="9 16"
 -- +goose Up
@@ -223,8 +234,8 @@ DROP TABLE users;
 ```
 
 These annotations instruct `goose` to send the entire statement, which now contains multiples insert
-statements, in one shot. Yes, that's one large payload, but that's typically fine and this migration
-executes in ~3s, which is an order of magnitude faster as compared to the previous example that took
+statements, in one shot. Yes, that's one large payload, but that's fine and this migration will
+execute in ~3s, which is an order of magnitude faster as compared to the previous example that took
 ~38s.
 
 ## Migrations outside transaction
@@ -232,8 +243,8 @@ executes in ~3s, which is an order of magnitude faster as compared to the previo
 All statements within a migration file are run within a transaction. Some statements, like
 `CREATE DATABASE` or `CREATE INDEX CONCURRENTLY`, cannot be run within a transaction block.
 
-For such cases you'll need to add the `-- +goose NO TRANSACTION` annotation, usually placed towards
-the top of the file.
+For such cases add the `-- +goose NO TRANSACTION` annotation, usually placed towards the top of the
+file.
 
 This annotation instructs `goose` to run all statements within this file without transactions. This
 includes Up and Down statements.
