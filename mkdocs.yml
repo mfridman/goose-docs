@@ -29,6 +29,12 @@ theme:
     - content.code.copy
 
 plugins:
+  - rss:
+      match_path: blog/posts/.* 
+      date_from_meta:
+        as_creation: date
+      categories:
+        - categories
   - blog:
       enabled: true
       blog_dir: blog
@@ -40,14 +46,6 @@ plugins:
   - search
   - social
   - tags
-  - redirects:
-      redirect_maps:
-        getting-started.md: installation.md
-        blog/welcome.md: blog/2021/welcome.md
-        blog/embed-sql-migrations.md: blog/2021/embed-sql-migrations.md
-        blog/better-tests.md: blog/2021/better-tests.md
-        blog/out-of-order-migrations.md: blog/2021/out-of-order-migrations.md
-        blog/no-version-migrations.md: blog/2021/no-version-migrations.md
 
 markdown_extensions:
   - pymdownx.emoji:

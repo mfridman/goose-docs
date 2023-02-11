@@ -30,3 +30,4 @@ upgrade-all:
 install-deps:
 	pip install mkdocs-redirects
 	pip install pillow cairosvg
+	pip install mkdocs-rss-plugin
