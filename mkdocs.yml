@@ -26,6 +26,7 @@ theme:
     - navigation.top
     # - toc.integrate
     - content.code.annotate
+    - content.code.copy
 
 plugins:
   - blog:
@@ -59,6 +60,11 @@ markdown_extensions:
   - md_in_html
   - attr_list
   - def_list
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
 
 extra_css:
   - stylesheets/extra.css
