@@ -12,7 +12,7 @@ slug: overview-sql-file
 
 # SQL migration files and goose annotations
 
-In this post we'll examine SQL migration files and `+goose` annotation comments, which are used to
+In this post we'll explore SQL migration files and `+goose` annotation comments, which are used to
 parse SQL statements and optionally modify how migrations are executed.
 
 As of this writing there are five annotations:
@@ -29,9 +29,9 @@ As of this writing there are five annotations:
 
 !!! success "bonus"
 
-    In addition to SQL migration files, the `goose` package can be used to write Go-based migrations and track both SQL and Go migrations in the same way.
+    In addition to SQL migration files, the ^^[`goose` package](https://pkg.go.dev/github.com/pressly/goose/v3)^^ can be used to write Go-based migrations and track both SQL and Go migrations in the same way.
 
-    See the [repository example](https://github.com/pressly/goose/tree/master/examples/go-migrations) for Go migrations, but we'll do a deep dive in a future post. Stay tuned!
+    See [repository example](https://github.com/pressly/goose/tree/master/examples/go-migrations) for Go migrations. We'll do a deep dive in a future post. Stay tuned!
 
 ## Quick start
 
@@ -45,10 +45,17 @@ SELECT 'up SQL query';
 SELECT 'down SQL query';
 ```
 
+Remember, annotations are captured as comments and cannot have leading spaces:
+
+```sql
+-- +goose Up ✅
+    -- +goose Up ❌ (error because leading whitespace)
+```
+
 ## The basics
 
-A SQL migration file must be suffixed with a `.sql` extension and is prefixed with either a
-timestamp or a sequential number.
+A SQL migration file must have a `.sql` extension and is prefixed with either a timestamp or a
+sequential number.
 
 There is a handy `goose create` command to stub out migration files in a consistent way:
 
@@ -72,13 +79,6 @@ migrations/00001_add_users_table.sql
 A SQL migration file can have both Up and Down migrations. For the curious, there is an open issue
 ([:simple-github: #374](https://github.com/pressly/goose/issues/374)) requesting support for
 migrations to be split in separate files.
-
-Annotations are captured as comments and cannot have leading spaces:
-
-```sql
--- +goose Up ✅
-    -- +goose Up ❌ (error because leading whitespace)
-```
 
 Each SQL migration file is expected to have exactly one `-- +goose Up` annotation.
 
@@ -149,19 +149,19 @@ language plpgsql;
 -- +goose StatementEnd
 ```
 
-When `goose` detects a `-- +goose StatementBegin` annotation it'll continue parsing statement(s),
+When `goose` detects a `-- +goose StatementBegin` annotation it continues parsing statement(s),
 ignoring semicolons, until `-- +goose StatementEnd` is detected. The resulting statement is stripped
 of leading and trailing comments / empty lines.
 
-Comments and empty lines ^^within^^ a statement are preserved!
+Comments and empty lines ^^within^^ the statement are preserved!
 
 ## Multiple statements
 
-But that's not all, the StatementBegin and StatementEnd annotations can be used to combine multiple
-statements so they get sent as a single request instead of being sent one-by-one.
+But that's not all, the Begin and End annotations can be used to combine multiple statements so they
+get sent as a single request instead of being sent one-by-one.
 
 This is best illustrated with a contrived example. Suppose we have a migration that creates a
-`users` table and inserts 100,000 rows with distinct inserts.
+`users` table and adds 100,000 rows with distinct `INSERT`'s.
 
 ```sql
 -- +goose Up
@@ -184,7 +184,7 @@ INSERT INTO "users" ("id", "username", "name", "surname") VALUES (100000, 'goofy
 DROP TABLE users;
 ```
 
-1.  This is a contrived example. Normally this would be a set of batched `INSERT`s with multiple
+1.  This is a contrived example. Normally this would be a set of batched `INSERT`'s with multiple
     column values, each enclosed with parentheses and separated by commas, like so:
 
     ```sql
@@ -195,8 +195,8 @@ DROP TABLE users;
     ```
 
 The Up migration contains 100,001 unique statements and they are sent to the server one-by-one
-within the same transaction. This migration will take ~38 seconds to complete due to the number of
-round trips.
+within the same transaction. This migration will take ~38s to complete due to the number of round
+trips.
 
 Using postgres as an example, here's what the logs show:
 
