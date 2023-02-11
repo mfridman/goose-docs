@@ -149,17 +149,16 @@ language plpgsql;
 -- +goose StatementEnd
 ```
 
-When `goose` detects a `-- +goose StatementBegin` annotation it continues parsing the statement
-(ignoring semicolons) until `-- +goose StatementEnd` is detected. The resulting statement is
-stripped of leading and trailing comments / empty lines.
+When `goose` detects a `-- +goose StatementBegin` annotation it'll continue parsing statement(s),
+ignoring semicolons, until `-- +goose StatementEnd` is detected. The resulting statement is stripped
+of leading and trailing comments / empty lines.
 
 Comments and empty lines ^^within^^ a statement are preserved!
 
 ## Multiple statements
 
-But that's not all, the `-- +goose StatementBegin` and `-- +goose StatementEnd` annotations can be
-used to combine multiple statements so they get sent as a single request instead of being sent
-one-by-one.
+But that's not all, the StatementBegin and StatementEnd annotations can be used to combine multiple
+statements so they get sent as a single request instead of being sent one-by-one.
 
 This is best illustrated with a contrived example. Suppose we have a migration that creates a
 `users` table and inserts 100,000 rows with distinct inserts.
