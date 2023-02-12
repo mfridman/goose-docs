@@ -158,7 +158,7 @@ Comments and empty lines ^^within^^ the statement are preserved!
 ## Multiple statements
 
 But that's not all, the Begin and End annotations can be used to combine multiple statements so they
-get sent as a single request instead of being sent one-by-one.
+get sent as a single command instead of being sent one-by-one.
 
 This is best illustrated with a contrived example. Suppose we have a migration that creates a
 `users` table and adds 100,000 rows with distinct `INSERT`'s.
@@ -194,21 +194,23 @@ DROP TABLE users;
       (2, 'brave_spence8', 'Brave', 'Spence8');
     ```
 
-The Up migration contains 100,001 unique statements and they are sent to the server one-by-one
-within the same transaction. This migration will take ~38s to complete due to the number of round
-trips.
+The Up migration contains 100,001 unique statements, all executed within the same transaction, but
+sent to the database one-by-one. This migration will take ~38s to complete due to the number of
+round trips.
 
-Using postgres as an example, here's what the logs show:
+Using PostgreSQL as an example, here's what the database logs show:
 
 ```log
-2023-02-11 14:56:12.166 UTC [61] LOG:  statement: INSERT INTO "users" ("id", "username", "name", "surname") VALUES (1, 'gallant_almeida7', 'Gallant', 'Almeida7');
-2023-02-11 14:56:12.167 UTC [61] LOG:  statement: INSERT INTO "users" ("id", "username", "name", "surname") VALUES (2, 'brave_spence8', 'Brave', 'Spence8');
-2023-02-11 14:56:12.168 UTC [61] LOG:  statement: INSERT INTO "users" ("id", "username", "name", "surname") VALUES (3, 'lucid_bardeen6', 'Lucid', 'Bardeen6');
+LOG:  statement: INSERT INTO "users" ("id", "username", "name", "surname") VALUES (1, 'gallant_almeida7', 'Gallant', 'Almeida7');
+LOG:  statement: INSERT INTO "users" ("id", "username", "name", "surname") VALUES (2, 'brave_spence8', 'Brave', 'Spence8');
+LOG:  statement: INSERT INTO "users" ("id", "username", "name", "surname") VALUES (3, 'lucid_bardeen6', 'Lucid', 'Bardeen6');
 [...] 100,000 log statements
 ```
 
-However, if we want `goose` to send all inserts as one statement, we can wrap the inserts with
-`-- +goose StatementBegin` and `-- +goose StatementEnd` annotations.
+However, if we want to combine the inserts into a single command, we can wrap them with
+`-- +goose StatementBegin` and `-- +goose StatementEnd` annotations. Note, a single command still
+contains several statements separated by semicolons, but they get sent to the server in the same
+query string like so: `"INSERT INTO ...; INSERT INTO ...;"`.
 
 ```sql hl_lines="9 16"
 -- +goose Up
@@ -232,10 +234,11 @@ INSERT INTO "users" ("id", "username", "name", "surname") VALUES (100000, 'goofy
 DROP TABLE users;
 ```
 
-These annotations instruct `goose` to send the entire statement, which now contains multiples
-statements delimited by semicolons, in one shot. Yes, that's a large payload, but that's fine and
-the migration will execute in ~3s, which is an order of magnitude faster as compared to the previous
-example that ran in ~38s.
+These annotations instruct `goose` to send a single command, which now consists of multiples
+statements delimited by semicolons, in one shot.
+
+Yes, that's a larg*er* payload, but that's fine and the migration will execute in ~3s, which is an
+order of magnitude faster as compared to the previous example that ran in ~38s.
 
 ## Migrations outside transaction
 
@@ -244,8 +247,8 @@ All statements within a migration file are run within a transaction. Some statem
 
 For such cases add the `-- +goose NO TRANSACTION` annotation, usually placed at the top of the file.
 
-This annotation instructs `goose` to run all statements within the file without transactions. This
-applies to both Up and Down statements.
+This annotation instructs `goose` to run all statements within the file ^^without transactions^^.
+This applies to all Up and Down statements within the file.
 
 ```sql hl_lines="1"
 -- +goose NO TRANSACTION
