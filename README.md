@@ -20,24 +20,18 @@ make preview
 
 Available at: http://localhost:8000
 
-
 ### How to update mkdocs-insiders
 
 Keep pip3 up-to-date
 
-    brew update && brew upgrade pip3
-
-or
-
-    python3.9 -m pip install --upgrade pip
+    python3.11 -m pip install --upgrade pip
 
 ---
 
 https://squidfunk.github.io/mkdocs-material/insiders/getting-started/#with-git
 
-    cd $HOME/src/github.com/mfridman
+    cd $HOME/src/github.com/squidfunk
     pip install -e mkdocs-material-insiders
-
 
 ### Install plugins
 
