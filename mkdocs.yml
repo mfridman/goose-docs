@@ -49,12 +49,11 @@ plugins:
 
 markdown_extensions:
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji 
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.superfences
   - pymdownx.details
   - admonition
-  - meta
   - md_in_html
   - attr_list
   - def_list
