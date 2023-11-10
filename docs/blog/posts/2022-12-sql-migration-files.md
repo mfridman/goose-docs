@@ -2,8 +2,7 @@
 title: SQL migration files and goose annotations
 description: An overview of goose SQL migrations and annotations.
 date: 2022-12-30
-authors:
-  - mike
+authors: [mfridman]
 categories:
   - Blog
   - "SQL migrations"

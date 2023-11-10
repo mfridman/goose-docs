@@ -2,14 +2,16 @@
 title: Visualizing goose up and down commands
 description: Visualizing goose up and down commands.
 date: 2021-12-19
-authors: [mike]
+authors: [mfridman]
 categories: [Blog, General]
 slug: visualizing-up-down-commands
 ---
 
 # A tour of goose up and down commands
 
-A while ago a co-op student, who happened to be a visual leaner, asked if it were possible to explain `goose` commands visually. At the time we were still at an office, so we gathered around the whiteboard and doodled some diagrams.
+A while ago a co-op student, who happened to be a visual leaner, asked if it were possible to
+explain `goose` commands visually. At the time we were still at an office, so we gathered around the
+whiteboard and doodled some diagrams.
 
 This post captures some of those whiteboard sketches, which seemed to help.
 
@@ -19,24 +21,24 @@ This post captures some of those whiteboard sketches, which seemed to help.
 
 **`goose up`**
 
-:   migrate all pending migrations to the most recent version
-
+: migrate all pending migrations to the most recent version
 
 **`goose up-by-one`**
 
-:   migrate a single pending version
+: migrate a single pending version
 
-**`goose up-to N`** 
+**`goose up-to N`**
 
-:   migrate to a specific pending version, where N is a migration number
+: migrate to a specific pending version, where N is a migration number
 
 ## **up examples**
 
 Let's illustrate up commands with a concrete example.
 
-Suppose our ./schema/migrations folder contains 11 migration files. We have previously applied 8 migrations and 3 migrations are currently pending.
+Suppose our ./schema/migrations folder contains 11 migration files. We have previously applied 8
+migrations and 3 migrations are currently pending.
 
-Running `goose version` returns: ***goose: version 8***
+Running `goose version` returns: **_goose: version 8_**
 
 Running `goose status` returns:
 
@@ -57,7 +59,7 @@ Pending                  -- 00011_k.sql
 ```
 
 - Running `goose up` applies all 3 pending migrations: 9, 10 and 11
-- Running `goose up-by-one`  applies only migration 9
+- Running `goose up-by-one` applies only migration 9
 - Running `goose up-to 8` does nothing, since 8 has already been applied
 - Running `goose up-to 10` applies migrations 9 and 10
 
@@ -69,18 +71,18 @@ Pending                  -- 00011_k.sql
 
 **`goose down`**
 
-:   migrate the latest version down
+: migrate the latest version down
 
+**`goose down-to N`**
 
-**`goose down-to N`** 
-
-:   migrate down to a specific version, where N is a migration number
+: migrate down to a specific version, where N is a migration number
 
 ## **down examples**
 
-Let's illustrate down commands, continuing with the above example. We have previously applied all 11 migrations from the ./schema/migrations folder.
+Let's illustrate down commands, continuing with the above example. We have previously applied all 11
+migrations from the ./schema/migrations folder.
 
-Running `goose version` returns: ***goose: version 11***
+Running `goose version` returns: **_goose: version 11_**
 
 Running `goose status` returns:
 
@@ -101,7 +103,7 @@ Sun Dec 19 21:31:11 2021 -- 00011_k.sql
 ```
 
 - Running `goose down` applies the down migration for 11
-- Running `goose down-to 11`  does nothing
+- Running `goose down-to 11` does nothing
 - Running `goose down-to 9` applies the down migrations for 11 and 10
 - Running `goose down-to 0` applies all down migrations
 
@@ -112,7 +114,7 @@ Sun Dec 19 21:31:11 2021 -- 00011_k.sql
 !!! note ""
 
     **Bonus**
-    
+
     `goose down-to 0` is the same as `goose reset`. Applying **all** down migrations.
 
     `goose redo` is the same as `goose down` followed by `goose up-by-one`. Reapplying the latest migration.

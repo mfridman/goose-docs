@@ -1,4 +1,5 @@
-mike:
-  name: Mike Fridman
-  description: Maintainer
-  avatar: https://github.com/mfridman.png
+authors:
+  mfridman:
+    avatar: https://github.com/mfridman.png
+    description: Maintainer
+    name: Mike Fridman

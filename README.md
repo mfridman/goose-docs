@@ -38,3 +38,4 @@ https://squidfunk.github.io/mkdocs-material/insiders/getting-started/#with-git
 From https://github.com/datarobot/mkdocs-redirects
 
     pip install mkdocs-redirects
+    pip install mkdocs-rss-plugin
