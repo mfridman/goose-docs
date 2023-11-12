@@ -39,3 +39,4 @@ From https://github.com/datarobot/mkdocs-redirects
 
     pip install mkdocs-redirects
     pip install mkdocs-rss-plugin
+    pip install 'mkdocs-material[imaging]'
