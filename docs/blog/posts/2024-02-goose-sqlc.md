@@ -56,7 +56,7 @@ simple Go application that uses `sqlc` and `goose` to interact with a SQLite dat
 
 You can clone the repository, and run `go run ./cmd/custom-goose`. It should print out a list of
 users randomly added with
-[moby/moby namesgenerator](https://pkg.go.dev/github.com/moby/moby@v24.0.6+incompatible/pkg/namesgenerator.)
+[moby/moby namesgenerator](https://pkg.go.dev/github.com/moby/moby@v24.0.6+incompatible/pkg/namesgenerator).
 
 ### Pre-requisites
 
@@ -69,15 +69,15 @@ Before we start, make sure you have the following installed:
 ### Step 1 - Write migrations
 
 First, we need to write the database migrations themselves. We'll dump them in a
-`./data/sql/migrations/` directyory, but you can put them anywhere you like.
+`./data/sql/migrations/` directory, but you can put them anywhere you like.
 
 Note, the demo repository uses a few advanced features of `goose` that are not strictly necessary,
-such as embedding SQL files in the binary (using `//go:embed *.sql`), using Go migrations, and
-building up a custom [`goose.Provider`](https://pressly.github.io/goose/blog/2023/goose-provider/).
+such as embedding SQL files in a binary (`//go:embed *.sql`), using Go migrations, and building up a
+custom [`goose.Provider`](https://pressly.github.io/goose/blog/2023/goose-provider/).
 
 Alright, moving on. Here's an example of a migration file:
 
-```sql
+```sql title="data/sql/migrations/00001_users_table.sql"
 -- +goose Up
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -95,7 +95,7 @@ explain all the options (see the
 [sqlc documentation](https://docs.sqlc.dev/en/latest/reference/config.html#version-2)), but here's a
 minimal example:
 
-```yaml
+```yaml title="sqlc.yaml"
 version: "2"
 sql:
   - schema: "data/sql/migrations" #(1)!
@@ -121,7 +121,7 @@ data/sql/queries/
 └── users.sql
 ```
 
-```sql
+```sql title="data/sql/queries/users.sql"
 -- name: ListUsers :many
 SELECT * FROM users ORDER BY username;
 ```
@@ -148,7 +148,7 @@ $ sqlc generate
 And that's it! We now have a `gen/dbstore` directory with the generated Go code. Here's a snippet of
 what the generated code looks like:
 
-```go
+```go title="gen/dbstore/users.sql.go"
 const listUsers = `-- name: ListUsers :many
 SELECT id, username FROM users ORDER BY username
 `
