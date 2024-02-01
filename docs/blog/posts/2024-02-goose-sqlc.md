@@ -1,15 +1,17 @@
 ---
-title: Using sqlc with goose
-description: How to use sqlc with goose
+title: Using sqlc and goose
+description: How to use sqlc and goose
 date: 2024-02-01
 authors: [mfridman]
 categories: [Blog]
 slug: goose-sqlc
 ---
 
-# Using `sqlc` with `goose`
+# Using `sqlc` and `goose`
 
 In this post, we give you a brief introduction to `sqlc` and show you how to use it with `goose`.
+
+<!-- more -->
 
 For those unfamiliar, [sqlc](https://sqlc.dev/) is a SQL compiler that generates Go code from your
 SQL queries, and [goose](https://github.com/pressly/goose) is a database migration tool for managing
