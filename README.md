@@ -40,3 +40,16 @@ From https://github.com/datarobot/mkdocs-redirects
     pip install mkdocs-redirects
     pip install mkdocs-rss-plugin
     pip install 'mkdocs-material[imaging]'
+
+## Virtual environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+## Install mkdocs
+
+```bash
+pip install git+https://github.com/squidfunk/mkdocs-material-insiders.git
+```
