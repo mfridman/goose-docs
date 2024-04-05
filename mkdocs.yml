@@ -1,3 +1,15 @@
+nav:
+  - Getting Started:
+      - Overview: index.md
+      - Installation: installation.md
+  - CLI Commands:
+      - Supported: commands/supported.md
+      - Experimental: commands/experimental.md
+  - Reference:
+      - Annotations: reference/annotations.md
+  - Blog:
+      - blog/index.md
+
 # Project information
 site_name: pressly/goose
 site_url: https://pressly.github.io/goose/
@@ -30,7 +42,7 @@ theme:
 
 plugins:
   - rss:
-      match_path: blog/posts/.* 
+      match_path: blog/posts/.*
       date_from_meta:
         as_creation: date
       categories:
@@ -65,13 +77,3 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/extra.css
-
-nav:
-  - Getting Started:
-      - Overview: index.md
-      - Installation: installation.md
-  - CLI Commands:
-      - Supported: commands/supported.md
-      - Experimental: commands/experimental.md
-  - Blog:
-      - blog/index.md

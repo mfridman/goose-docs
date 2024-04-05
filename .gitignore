@@ -28,3 +28,18 @@ Temporary Items
 
 .cache
 site/
+
+# Python #
+#########
+.python-version
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+__pycache__/
+*.egg-info/
+.installed.cfg
+*.egg
