@@ -1,4 +1,4 @@
-# Annotations
+# SQL file annotations
 
 Annotations are comments that are placed in SQL migration files to provide additional information to
 goose. They are used to parse SQL statements and optionally modify how migrations are executed.

@@ -2,11 +2,16 @@ nav:
   - Getting Started:
       - Overview: index.md
       - Installation: installation.md
-  - CLI Commands:
-      - Supported: commands/supported.md
-      - Experimental: commands/experimental.md
-  - Reference:
-      - Annotations: reference/annotations.md
+  - Documentation:
+      - Concepts: 
+        - documentation/annotations.md
+      - Library: 
+        - documentation/provider.md
+      - CLI:
+        - documentation/cli-commands.md
+        - documentation/environment-variables.md
+      - Guides:
+        - documentation/custom-store.md
   - Blog:
       - blog/index.md
 

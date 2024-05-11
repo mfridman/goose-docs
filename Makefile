@@ -4,6 +4,10 @@ DATE:=`date +%c`
 
 .PHONY: preview
 preview:
+	mkdocs serve
+
+.PHONY: preview-dev
+preview-dev:
 	mkdocs serve --dev-addr=0.0.0.0:8000
 
 .PHONY: build
