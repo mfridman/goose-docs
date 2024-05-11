@@ -8,9 +8,6 @@ Environment variables have lower precedence than command line arguments and flag
 The following environment variables are supported:
 
 - `GOOSE_DRIVER` - The database driver to use
-
 - `GOOSE_DBSTRING` - The database connection string
-
 - `GOOSE_MIGRATION_DIR` - The directory containing the migration files (default: `.`)
-
 - `NO_COLOR` - Disable color output
