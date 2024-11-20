@@ -10,7 +10,7 @@ Usage: goose [flags] DRIVER DBSTRING <command>
 Flags must come **before** commands, otherwise they will be interpreted as arguments to the command.
 
 Both `DRIVER` and `DBSTRING` may be set using environment variables `GOOSE_DRIVER` and
-`GOOSE_DBSTRING`. See the [environment variables](environment_variables.md) documentation for more
+`GOOSE_DBSTRING`. See the [environment variables](environment-variables.md) documentation for more
 information.
 
 ## Commands
