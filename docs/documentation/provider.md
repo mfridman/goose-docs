@@ -28,7 +28,7 @@ Each dialect has a corresponding constant backed by a
 [database.Store](https://pkg.go.dev/github.com/pressly/goose/v3@v3.20.0/database#Store)
 implementation.
 
-For most users its sufficient to **use one of the natively supported dialects** and not worry about
+For most users it's sufficient to **use one of the natively supported dialects** and not worry about
 the database store. For more advanced users, you may bring your own dialect and store, see the
 [TODO]() section for more information.
 
@@ -47,7 +47,7 @@ The [`fs.FS`](https://pkg.go.dev/io/fs#FS) is the filesystem abstraction that go
 migration files. This is will typically be [`os.DirFS`](https://pkg.go.dev/os#DirFS),
 [`embed.FS`](https://pkg.go.dev/embed#FS).
 
-Quite often you may have a heirarchy of directories with migrations, in which case you can use
+Quite often you may have a hierarchy of directories with migrations, in which case you can use
 [`fs.Sub`](https://pkg.go.dev/fs#Sub) to create a sub filesystem.
 
 ```go

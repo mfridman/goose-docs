@@ -1,6 +1,6 @@
 # goose docs website
 
-The documentation is available at [pressly/goose docs](pressly.github.io/goose)
+The documentation is available at [pressly/goose docs](https://pressly.github.io/goose)
 
 Installation instructions from here:
 
