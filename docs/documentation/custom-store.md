@@ -1,11 +1,21 @@
-# Custom store
+# Custom database store
 
-Goose aims to support a large number of dialects out-of-the-box, but it's either not possible or nor
-practical to support every database. In these cases, users can bring their own store implementation
-assuming it fits the `database.Store` interface.
+Goose aims to support a large number of database technologies out-of-the-box, but it's neither
+possible nor practical to support every database and the various configurations.
 
-The core goose library leverages a `database.Store` interface to interact with the database, but it
-makes no assumptions about the underlying database.
+For example, there have been many requests for
+[ClickHouse engines](https://clickhouse.com/docs/en/engines/table-engines) because goose ships with
+the `MergeTree` engine by default, but this may be insufficient for some projects.
+
+- [:simple-github: pressly/gooose#809](https://github.com/pressly/gooose/issues/809)
+- [:simple-github: pressly/gooose#530](https://github.com/pressly/gooose/issues/530)
+- [:simple-github: pressly/gooose#520](https://github.com/pressly/gooose/issues/520)
+
+For such cases, users can bring their own store implementation so long as it fits the
+`database.Store` interface.
+
+The core goose library makes no assumptions about the underlying database and uses the
+`database.Store` for all operations.
 
 ## Usage
 
@@ -41,8 +51,7 @@ type Store interface {
 	// and must not be an empty string.
 	Tablename() string
 
-	// CreateVersionTable creates the version table, which is used to track migrations. When
-	// creating this table, the implementation MUST also insert a row for the initial version (0).
+	// CreateVersionTable creates the version table, which is used to track migrations.
 	CreateVersionTable(ctx context.Context, db DBTxConn) error
 
 	// Insert a version id into the version table.
